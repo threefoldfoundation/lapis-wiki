@@ -35,7 +35,6 @@
 
 <script src="/static/weblibs/mermaid/mermaid.min.js"></script>
 <script src="/static/weblibs/docsify/docsify.min.js"></script>
-<script src="/static/weblibs/docsify/search.min.js"></script>
 <script src="/static/weblibs/docsify/prism-bash.min.js"></script>
 <script src="/static/weblibs/docsify/prism-python.min.js"></script>
 <script src="/static/weblibs/docsify/echarts.min.js"></script>
@@ -44,6 +43,13 @@
 <script src="/static/weblibs/disqus/disqus.min.js"></script>
 <script src="/static/weblibs/docsify/docsify-themeable"></script>
 <script>
+var paths_list = [];
+<% for key, path in ipairs(paths_list) do %>
+    <% if key % 2 == 1 then %>
+        paths_list.push('/<%= path %>'.replace("md:", ""));
+    <% end %>
+<% end %>
+console.log(paths_list);
 window.$docsify = {
     coverpage: false,
     basePath: '/wiki/<%= name %>/',
@@ -51,7 +57,7 @@ window.$docsify = {
     el: '#app_<%= name %>',
     disqus: '//tf-foundation.disqus.com/embed.js',
     repo: 'https://github.com/threefoldfoundation/info_<%= name %>',
-    loadSidebar: true,
+    // loadSidebar: true,
     markdown: {
         renderer: {
             code: function (code, lang){
@@ -62,8 +68,20 @@ window.$docsify = {
             }
         }
     },
-    search : {
-        maxAge: 3600000, // Expiration time 1h = 3600000
+    search: {
+        maxAge: 86400000, // Expiration time, the default one day
+        paths: paths_list,
+        placeholder: 'Type to search',
+        noData: 'No Results!',
+
+        // Headline depth, 1 - 6
+        depth: 2,
+
+        hideOtherSidebarContent: false, // whether or not to hide other sidebar content
+
+        // To avoid search index collision
+        // between multiple websites under the same domain
+        namespace: '<%= name %>',
     },
     themeable : {
         // readyTransition : false,
@@ -72,7 +90,7 @@ window.$docsify = {
 };
 mermaid.initialize({ startOnLoad: false });
 </script>
-
+<script src="/static/weblibs/docsify/search.js"></script>
 </body>
 
 </html>
