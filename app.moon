@@ -8,9 +8,11 @@ class extends lapis.Application
     [index: "/wiki(/index)"]: =>
         redirect_to: "/wiki/foundation"
 
-    [docsite: "/wiki/:doc_site(/*)"]: =>
+    [doc_site: "/wiki/:doc_site(/*)"]: =>
         redis = get_redis!
         @name = @params.doc_site
+        @paths_list = redis\hscan("docsites:#{@name}", 0, "match", "md:*")[2]
+
         file = @params.splat
 
         if file == nil
