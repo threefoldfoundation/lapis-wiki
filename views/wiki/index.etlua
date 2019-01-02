@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="/static/weblibs/docsify/vue.css">
+    <link rel="stylesheet" href="/static/weblibs/docsify/theme-simple.css">
+    <link rel="stylesheet" href="/static/weblibs/vue/vuep.css">
+    <style>
+
+		:root {
+			/* Reduce the font size */
+			/* --base-font-size: 14px; */
+
+			/* Change the theme color hue (0-360) */
+			/* --theme-hue: 325; */
+
+			/* Add sidebar navigation bullets */
+			/* --sidebar-nav-link-before-content-l1: '😀'; */
+			/* --sidebar-nav-link-before-content-l2: '💩'; */
+		}
+    .markdown-section{max-width:1024px;}
+
+    </style>
+
+</head>
+
+<body>
+<div id="app_<%= name %>"></div>
+
+<script src="/static/weblibs/mermaid/mermaid.min.js"></script>
+<script src="/static/weblibs/docsify/docsify.min.js"></script>
+<script src="/static/weblibs/docsify/search.min.js"></script>
+<script src="/static/weblibs/docsify/prism-bash.min.js"></script>
+<script src="/static/weblibs/docsify/prism-python.min.js"></script>
+<script src="/static/weblibs/docsify/echarts.min.js"></script>
+<script src="/static/weblibs/docsify/index.min.js"></script>
+<script src="/static/weblibs/docsify/docsify-plantuml.min.js"></script>
+<script src="/static/weblibs/disqus/disqus.min.js"></script>
+<script src="/static/weblibs/docsify/docsify-themeable"></script>
+<script>
+window.$docsify = {
+    coverpage: false,
+    basePath: '/wiki/<%= name %>/',
+    name: 'ThreeFold Foundation <%= name %>',
+    el: '#app_<%= name %>',
+    disqus: '//tf-foundation.disqus.com/embed.js',
+    repo: 'https://github.com/threefoldfoundation/info_<%= name %>',
+    loadSidebar: true,
+    markdown: {
+        renderer: {
+            code: function (code, lang){
+                if (lang === "mermaid"){
+                    return ('<div class="mermaid">' + mermaid.render(lang, code) + "</div>");
+                }
+                return this.origin.code.apply(this, arguments);
+            }
+        }
+    },
+    search : {
+        maxAge: 3600000, // Expiration time 1h = 3600000
+    },
+    themeable : {
+        // readyTransition : false,
+        // responsiveTables: false
+    }
+};
+mermaid.initialize({ startOnLoad: false });
+</script>
+
+</body>
+
+</html>
