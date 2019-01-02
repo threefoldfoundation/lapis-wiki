@@ -2,9 +2,12 @@
 
 # Installation
 
+**Redis**
+- `sudo apt install redis-server redis-cli`
+
 **Lua**
 
-- `sudo apt install luarocks`
+- `sudo apt install luarocks moonscript`
 
 **Openresty**
 
@@ -21,4 +24,8 @@
 # Requirements
 - `luarocks install --server=http://rocks.moonscript.org/manifests/leafo lapis-redis`
 
+# Running
+
+- Make sure redis is running `service redis-server start`
+- Run server `lapis server`
 
