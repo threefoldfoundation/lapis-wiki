@@ -24,8 +24,15 @@
 # Requirements
 - `luarocks install --server=http://rocks.moonscript.org/manifests/leafo lapis-redis`
 
-# Running
+# Prerequisites
+- Make sure weblibc is up2date
+    - clone/update the repo `ssh://git@github.com/threefoldtech/jumpscale_weblibs.git` i.e in `~/code/github/threefoldtech/jumpscale_weblibs`
+
+- Make sure you have a symlink in lapius-wiki/static for weblibc
+  - in lapis-wiki directory `cd static && ln -s ~/code/github/threefoldtech/jumpscale_weblibs/weblibc weblibc`
 
 - Make sure redis is running `service redis-server start`
-- Run server `lapis server`
 
+# Running
+
+- Run server `lapis server`
