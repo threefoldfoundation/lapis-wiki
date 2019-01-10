@@ -1,9 +1,14 @@
 # lapis-wiki
 
+# For running from jumpscale sandbox:
+`js_shell j.tools.markdowndocs.webserver()`
+
+# For running standalone
+
 # Installation
 
 **Redis**
-- `sudo apt install redis-server redis-cli`
+- `sudo apt install redis-server`
 
 **Lua**
 
