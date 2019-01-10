@@ -43,13 +43,6 @@
 <script src="/static/weblibs/disqus/disqus.min.js"></script>
 <script src="/static/weblibs/docsify/docsify-themeable"></script>
 <script>
-var paths_list = [];
-<% for key, path in ipairs(paths_list) do %>
-    <% if key % 2 == 1 then %>
-        paths_list.push('/<%= path %>'.replace("md:", ""));
-    <% end %>
-<% end %>
-console.log(paths_list);
 window.$docsify = {
     coverpage: false,
     basePath: '/wiki/<%= name %>/',
@@ -57,7 +50,7 @@ window.$docsify = {
     el: '#app_<%= name %>',
     disqus: '//tf-foundation.disqus.com/embed.js',
     repo: 'https://github.com/threefoldfoundation/info_<%= name %>',
-    // loadSidebar: true,
+    loadSidebar: true,
     markdown: {
         renderer: {
             code: function (code, lang){
@@ -70,7 +63,7 @@ window.$docsify = {
     },
     search: {
         maxAge: 86400000, // Expiration time, the default one day
-        paths: paths_list,
+        paths: <%- all_pages %>,
         placeholder: 'Type to search',
         noData: 'No Results!',
 
