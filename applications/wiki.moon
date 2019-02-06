@@ -4,6 +4,8 @@ util = require "lapis.util"
 
 
 class WikiApp extends lapis.Application
+    @path: "/wiki"
+    @name: "wiki_"
     @enable "etlua"
 
     [index: "(index)"]: =>
@@ -31,4 +33,6 @@ class WikiApp extends lapis.Application
                             dirs[#dirs + 1] = full_path
             @all_pages = util.to_json(all_pages)
             return render: "wiki.index"
-        redirect_to: "/wiki_static/" .. @name .. "/" .. string.lower(file)
+        if @req.headers['x-forwarded-proto'] == "https"
+            @req.parsed_url.scheme = "http"
+        redirect_to: "/wiki_static/"..@name.."/".. string.lower(file)
