@@ -34,5 +34,5 @@ class WikiApp extends lapis.Application
             @all_pages = util.to_json(all_pages)
             return render: "wiki.index"
         if @req.headers['x-forwarded-proto'] == "https"
-            @req.parsed_url.scheme = "http"
+            @req.parsed_url.scheme = "https"
         redirect_to: "/wiki_static/"..@name.."/".. string.lower(file)
