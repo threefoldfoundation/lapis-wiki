@@ -1,4 +1,4 @@
-app.lua
+*.lua
 nginx.conf.compiled
 static/weblibs
 .idea
