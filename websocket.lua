@@ -1,11 +1,8 @@
---local host, port = "127.0.0.1", 8001
---local socket = require("socket")
---local tcp = assert(socket.tcp())
---tcp:connect(host, port)
-
 local redis = require 'redis'
 local json = require "cjson"
-local client = redis.connect('127.0.0.1', 8888)
+local config = require("lapis.config").get()
+
+local client = redis.connect(config.gedis_host, config.gedis_port)
 
 local server = require "resty.websocket.server"
 local wb, err = server:new {
@@ -25,12 +22,6 @@ while true do
     if type == "close" then
         break
     elseif type == "text" then
-        --        tcp:send(data);
-        --        local res, _, partial = tcp:receive("*l")
-        --        if string.sub(res, 1, 1) == "$" then
-        --            local bytes = tcp:receive(string.sub(res, 2))
-        --            res = res .. "\r\n" .. bytes
-        --        end
         data = json.decode(data)
         client["gedis"] = redis.command(data['command'])
         local response, args, headers
