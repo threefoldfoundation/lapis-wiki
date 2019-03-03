@@ -28,7 +28,9 @@ class WebHookApp extends lapis.Application
                 return status: ngx.HTTP_BAD_REQUEST
 
             ngx.req.read_body()
-            data = ngx.req.get_body_data()
+            data, err = ngx.req.get_body_data()
+            if err != nil
+                print err
             digest = "sha1=" .. str.to_hex(ngx.hmac_sha1(config.github_secret, data))
 
             if digest != signature
@@ -37,7 +39,7 @@ class WebHookApp extends lapis.Application
 
             payload = util.from_json(@req.params_post.payload)
             args = {
-                "url": payload['repository']['ssh_url']
+                "url": payload['repository']['clone_url']
             }
             client.gedis(client, util.to_json(args))
             return status: ngx.HTTP_OK
