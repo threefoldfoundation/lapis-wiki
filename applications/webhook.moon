@@ -41,6 +41,6 @@ class WebHookApp extends lapis.Application
             args = {
                 "url": payload['repository']['clone_url']
             }
-            client.gedis(client, util.to_json(args))
+            client.gedis(client, util.to_json(args), config.name)
             return status: ngx.HTTP_OK
     }

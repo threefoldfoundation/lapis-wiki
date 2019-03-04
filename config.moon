@@ -5,6 +5,7 @@ config "development", ->
   gedis_port 8888
   gedis_host '127.0.0.1'
   github_secret 'abdoabdo'
+  name 'threefold'
 
 config "production", ->
   port 80
