@@ -45,7 +45,7 @@
 <script>
 window.$docsify = {
     coverpage: false,
-    basePath: '/wiki/<%= name %>/',
+    basePath: '/<%= name %>/',
     name: 'ThreeFold Foundation <%= name %>',
     el: '#app_<%= name %>',
     disqus: '//tf-foundation.disqus.com/embed.js',
