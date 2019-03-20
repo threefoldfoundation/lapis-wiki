@@ -35,4 +35,7 @@ class WikiApp extends lapis.Application
             return render: "wiki.index"
         if @req.headers['x-forwarded-proto'] == "https"
             @req.parsed_url.scheme = "https"
-        redirect_to: "/wiki_static/"..@name.."/".. string.lower(file)
+        if string.sub(file, -3) == ".md"
+            file = string.lower(file)
+
+        redirect_to: "/wiki_static/"..@name.."/".. file
