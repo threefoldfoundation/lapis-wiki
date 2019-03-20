@@ -5,8 +5,6 @@ config "development", ->
   gedis_port 8888
   gedis_host '127.0.0.1'
   github_secret 'abdoabdo'
-  name 'threefold'
-  docs_path 'https://github.com/threefoldfoundation/www_threefold_lapis/tree/master/docs'
 
 config "production", ->
   port 80

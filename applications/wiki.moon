@@ -4,18 +4,20 @@ util = require "lapis.util"
 
 
 class WikiApp extends lapis.Application
+    @path: "/wiki"
+    @name: "wiki_"
     @enable "etlua"
 
     [index: "(index)"]: =>
         -- redirect_to: @url_for("wiki_doc_site"), "foundation"
-        redirect_to: "/foundation"
+        redirect_to: "/wiki/foundation"
 
     [doc_site: "/:doc_site(/*)"]: =>
         @name = @params.doc_site
         file = @params.splat
 
         if file == nil
-            -- If no params after `/:doc_site`, this means we are in the home of the wiki and need to load index
+            -- If no params after `/wiki/:doc_site`, this means we are in the home of the wiki and need to load index
             root = "/sandbox/var/docsites/" .. @name
             dirs = {root}
             all_pages = {}
