@@ -59,7 +59,10 @@ window.$docsify = {
                 if (lang === "mermaid"){
                     return ('<div class="mermaid">' + mermaid.render(lang, code) + "</div>");
                 }
-                if (lang === "gslides") {
+                if (lang === "gslide") {
+                  return (`<div class="reveal"><div class="slides" style="position: initial;">${code}</div></div>`);
+                }
+                if (lang === "slideshow") {
                   return (`<div class="reveal"><div class="slides" style="position: initial;">${code}</div></div>`);
                 }
                 return this.origin.code.apply(this, arguments);
