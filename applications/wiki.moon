@@ -32,7 +32,7 @@ class WikiApp extends lapis.Application
                         elseif mode=="directory"
                             dirs[#dirs + 1] = full_path
             @all_pages = util.to_json(all_pages)
-            return render: "wiki.index"
+            return render: "wiki.index", layout: false
         if @req.headers['x-forwarded-proto'] == "https"
             @req.parsed_url.scheme = "https"
         if string.sub(file, -3) == ".md"
