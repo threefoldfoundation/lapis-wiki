@@ -1,16 +1,23 @@
 lapis = require "lapis"
 lfs = require "lfs"
 util = require "lapis.util"
-
+os = require("os")
 
 class WikiApp extends lapis.Application
-    @path: "/wiki"
-    @name: "wiki_"
     @enable "etlua"
 
-    [index: "(index)"]: =>
-        -- redirect_to: @url_for("wiki_doc_site"), "foundation"
-        redirect_to: "/wiki/foundation"
+    [index: "(/(index))"]: =>
+        @title = "Wikis Hub"
+        -- Get list of loaded wikis
+        dir = "/sandbox/var/docsites/"
+        @dirs = {}
+        for entity in lfs.dir(dir) do
+            if entity ~= "." and entity ~= ".." then
+                full_path = dir .. "/" .. entity
+                mode = lfs.attributes(full_path, "mode")
+                if mode=="directory"
+                    @dirs[#@dirs + 1] = entity
+        render: "wiki.list", layout: false
 
     [doc_site: "/:doc_site(/*)"]: =>
         @name = @params.doc_site
@@ -38,4 +45,4 @@ class WikiApp extends lapis.Application
         if string.sub(file, -3) == ".md"
             file = string.lower(file)
 
-        redirect_to: "/wiki_static/"..@name.."/".. file
+        redirect_to: "/docsites/"..@name.."/".. file
