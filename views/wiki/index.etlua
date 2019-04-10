@@ -87,7 +87,21 @@ window.$docsify = {
     themeable : {
         // readyTransition : false,
         // responsiveTables: false
-    }
+    },
+    plugins: [
+        function(hook) {
+            hook.doneEach(() => {
+            var url = new URL(window.location.href.replace('#', ''));
+            var param =new URLSearchParams(url.search).get('sidebar');
+            const dom = document.querySelector('body');
+            if (param == "hide") {
+                dom.classList.add('no-sidebar');
+            } else if (param == "collapse") {
+                dom.classList.add('close');
+            }
+            });
+        }
+  ]
 };
 mermaid.initialize({ startOnLoad: false });
 function revealRun() {
