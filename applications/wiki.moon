@@ -6,21 +6,8 @@ os = require("os")
 class WikiApp extends lapis.Application
     @enable "etlua"
 
-    [index: "(/(index))"]: =>
-        @title = "Wikis Hub"
-        -- Get list of loaded wikis
-        dir = "/sandbox/var/docsites/"
-        @dirs = {}
-        for entity in lfs.dir(dir) do
-            if entity ~= "." and entity ~= ".." then
-                full_path = dir .. "/" .. entity
-                mode = lfs.attributes(full_path, "mode")
-                if mode=="directory"
-                    @dirs[#@dirs + 1] = entity
-        render: "wiki.list", layout: false
-
-    [doc_site: "/:doc_site(/*)"]: =>
-        @name = @params.doc_site
+    [doc_site: "/(*)"]: =>
+        @name = ngx.var.wiki_name
         file = @params.splat
 
         if file == nil
