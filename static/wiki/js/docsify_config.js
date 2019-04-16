@@ -4,10 +4,10 @@ mermaid.initialize({ startOnLoad: false });
 function docsifyConfig(name, all_pages) {
     window.$docsify = {
         coverpage: false,
-        basePath: '/wiki/' + name,
+        basePath: '/',
         name: 'ThreeFold Foundation ' + name.charAt(0).toUpperCase() + name.slice(1),
         el: '#app_' + name,
-        disqus: 'https://tf-foundation.disqus.com/embed.js',
+        disqus: '//tf-foundation.disqus.com/embed.js',
         repo: 'https://github.com/threefoldfoundation/info_' + name,
         loadSidebar: true,
         markdown: {
@@ -71,6 +71,7 @@ function docsifyConfig(name, all_pages) {
             function (hook) {
                 hook.doneEach(() => {
                     // gallery
+                    // do not init gallery if not loaded into dom
                     if (!document.querySelector('.gallery')) {
                         return;
                     }
@@ -80,7 +81,7 @@ function docsifyConfig(name, all_pages) {
 
             function (hook) {
                 hook.doneEach(() => {
-                    // do not initialize reveal if no slides are loaded into dom
+                    // do not init reveal if no slides are loaded into dom
                     if (!document.querySelector('.reveal .slides')) {
                         return;
                     }
