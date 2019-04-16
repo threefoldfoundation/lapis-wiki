@@ -7,11 +7,11 @@ class WikiApp extends lapis.Application
     @enable "etlua"
 
     [doc_site: "/(*)"]: =>
-        @name = ngx.var.wiki_name
+        @name = ngx.var.name
         file = @params.splat
 
         if file == nil
-            -- If no params after `/wiki/:doc_site`, this means we are in the home of the wiki and need to load index
+            -- If no params after `/`, this means we are in the home of the wiki and need to load index
             root = "/sandbox/var/docsites/" .. @name
             dirs = {root}
             all_pages = {}
