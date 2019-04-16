@@ -1,23 +1,17 @@
 lapis = require "lapis"
 lfs = require "lfs"
 util = require "lapis.util"
-
+os = require("os")
 
 class WikiApp extends lapis.Application
-    @path: "/wiki"
-    @name: "wiki_"
     @enable "etlua"
 
-    [index: "(index)"]: =>
-        -- redirect_to: @url_for("wiki_doc_site"), "foundation"
-        redirect_to: "/wiki/foundation"
-
-    [doc_site: "/:doc_site(/*)"]: =>
-        @name = @params.doc_site
+    [doc_site: "/(*)"]: =>
+        @name = ngx.var.name
         file = @params.splat
 
         if file == nil
-            -- If no params after `/wiki/:doc_site`, this means we are in the home of the wiki and need to load index
+            -- If no params after `/`, this means we are in the home of the wiki and need to load index
             root = "/sandbox/var/docsites/" .. @name
             dirs = {root}
             all_pages = {}
@@ -38,4 +32,4 @@ class WikiApp extends lapis.Application
         if string.sub(file, -3) == ".md"
             file = string.lower(file)
 
-        redirect_to: "/wiki_static/"..@name.."/".. file
+        redirect_to: "/docsites/"..@name.."/".. file

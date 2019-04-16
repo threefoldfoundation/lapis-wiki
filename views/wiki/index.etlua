@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title><%= name %></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
@@ -47,12 +47,12 @@
 <script src="/static/weblibs/docsify/index.min.js"></script>
 <script src="/static/weblibs/docsify/docsify-plantuml.min.js"></script>
 <script src="/static/weblibs/disqus/disqus.min.js"></script>
-<script src="/static/weblibs/docsify/docsify-themeable"></script>
+<script src="/static/weblibs/docsify/docsify-themeable.js"></script>
 <script src='/static/weblibs/reveal/js/reveal.js'></script>
 <script>
 window.$docsify = {
     coverpage: false,
-    basePath: '/wiki/<%= name %>/',
+    basePath: '/',
     name: 'ThreeFold Foundation <%= name %>',
     el: '#app_<%= name %>',
     disqus: '//tf-foundation.disqus.com/embed.js',
@@ -121,6 +121,7 @@ function revealRun() {
         showNotes: true
     });
 };
+<!-- FIXME: this dirty hack needs to be removed-->
 setTimeout(revealRun, 3000);
 </script>
 <script src="/static/weblibs/docsify/search.js"></script>
