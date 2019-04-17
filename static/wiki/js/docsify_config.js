@@ -1,0 +1,93 @@
+
+mermaid.initialize({ startOnLoad: false });
+
+function docsifyConfig(name, all_pages) {
+    window.$docsify = {
+        coverpage: false,
+        basePath: '/',
+        name: 'ThreeFold Foundation ' + name.charAt(0).toUpperCase() + name.slice(1),
+        el: '#app_' + name,
+        disqus: '//tf-foundation.disqus.com/embed.js',
+        repo: 'https://github.com/threefoldfoundation/info_' + name,
+        loadSidebar: true,
+        markdown: {
+            renderer: {
+                code: function (code, lang) {
+                    if (lang === "mermaid") {
+                        return ('<div class="mermaid">' + mermaid.render(lang, code) + "</div>");
+                    }
+                    if (lang === "gslide") {
+                        return (`<div class="reveal"><div class="slides" style="position: initial;">${code}</div></div>`);
+                    }
+                    if (lang === "slideshow") {
+                        return (`<div class="reveal"><div class="slides" style="position: initial;">${code}</div></div>`);
+                    }
+                    if (lang === "gallery") {
+                        return (`<div class="gallery" style="position: initial;">${code}</div>`);
+                    }
+                    if (lang === "team") {
+                        var data = JSON.parse(code);
+                        return TeamWidget.render(data.dataset, data.order);
+                    }
+                    return this.origin.code.apply(this, arguments);
+                }
+            }
+        },
+        search: {
+            maxAge: 86400000, // Expiration time, the default one day
+            paths: all_pages,
+            placeholder: 'Type to search',
+            noData: 'No Results!',
+
+            // Headline depth, 1 - 6
+            depth: 2,
+
+            hideOtherSidebarContent: false, // whether or not to hide other sidebar content
+
+            // To avoid search index collision
+            // between multiple websites under the same domain
+            namespace: name,
+        },
+        themeable: {
+            // readyTransition : false,
+            // responsiveTables: false
+        },
+        plugins: [
+            function (hook) {
+                hook.doneEach(() => {
+                    var url = new URL(window.location.href.replace('#', ''));
+                    var param = new URLSearchParams(url.search).get('sidebar');
+                    const dom = document.querySelector('body');
+                    if (param == "hide") {
+                        dom.classList.add('no-sidebar');
+                    } else if (param == "collapse") {
+                        dom.classList.add('close');
+                    }
+                });
+            },
+
+            TeamWidgetPlugin(),
+
+            function (hook) {
+                hook.doneEach(() => {
+                    // gallery
+                    // do not init gallery if not loaded into dom
+                    if (!document.querySelector('.gallery')) {
+                        return;
+                    }
+                    $('.gallery a').simpleLightbox();
+                });
+            },
+
+            function (hook) {
+                hook.doneEach(() => {
+                    // do not init reveal if no slides are loaded into dom
+                    if (!document.querySelector('.reveal .slides')) {
+                        return;
+                    }
+                    Reveal.initialize({ showNotes: true });
+                });
+            },
+        ]
+    };
+}
