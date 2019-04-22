@@ -7,10 +7,8 @@ config = require("lapis.config").get!
 
 
 class WebHookApp extends lapis.Application
-    @path: "/webhook"
-    @name: "webhook_"
 
-    [github: "/github"]: app.respond_to {
+    [github: "/webhook/github"]: app.respond_to {
         POST: =>
             client = redis.connect(config.gedis_host, config.gedis_port)
             client["gedis"] = redis.command("default.webhook.pull_repo")
