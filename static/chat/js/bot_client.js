@@ -1,6 +1,6 @@
 import {
     default as client
-} from '/static/chat/js/gedis_client.js';
+} from '/static/weblibs/gedis/gedis_client.js';
 let EXEC_OBJ = {
     "namespace": "default",
     "actor": "chatbot",
