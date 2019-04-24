@@ -1,6 +1,3 @@
-import {
-    default as client
-} from '/static/weblibs/gedis/gedis_client.js';
 let EXEC_OBJ = {
     "namespace": "default",
     "actor": "chatbot",
@@ -287,11 +284,11 @@ var generateSlide = function (res) {
         });
         EXEC_OBJ['command'] = "work_report";
         EXEC_OBJ['args']['result'] = value;
-        client.execute(EXEC_OBJ).then(function (res) {
+        GEDIS_CLIENT.execute(EXEC_OBJ).then(function (res) {
             EXEC_OBJ['command'] = "work_get";
             delete EXEC_OBJ['args']['result'];
             // Ignore work_report response and wait for getting next question
-            client.execute(EXEC_OBJ).then(function (res) {
+            GEDIS_CLIENT.execute(EXEC_OBJ).then(function (res) {
                 res = JSON.parse(res);
                 generateSlide(res);
             });
@@ -306,13 +303,13 @@ EXEC_OBJ["command"] = "session_new";
 EXEC_OBJ["args"] = {
     "topic": TOPIC
 };
-client.execute(EXEC_OBJ).then(function (res) {
+GEDIS_CLIENT.execute(EXEC_OBJ).then(function (res) {
     res = JSON.parse(res);
     EXEC_OBJ['command'] = "work_get";
     EXEC_OBJ['args'] = {
         "sessionid": res['sessionid']
     }
-    client.execute(EXEC_OBJ).then(function (res) {
+    GEDIS_CLIENT.execute(EXEC_OBJ).then(function (res) {
         res = JSON.parse(res);
         generateSlide(res);
     });
