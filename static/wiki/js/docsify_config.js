@@ -38,6 +38,7 @@ function docsifyConfig(name, all_pages) {
             paths: all_pages,
             placeholder: 'Type to search',
             noData: 'No Results!',
+            name: name,
 
             // Headline depth, 1 - 6
             depth: 2,
@@ -66,7 +67,7 @@ function docsifyConfig(name, all_pages) {
                 });
             },
 
-            TeamWidgetPlugin(),
+            //TeamWidgetPlugin(),
 
             function (hook) {
                 hook.doneEach(() => {

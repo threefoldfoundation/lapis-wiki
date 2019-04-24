@@ -40,7 +40,10 @@
 <!-- galleryscript -->
 <script src="/static/weblibs/jquery/jquery.min.js"></script>
 <script src="/static/weblibs/gallery/simple-lightbox.min.js"></script>
-
+<script>
+            const SERVER = '<%= url %>/ws';
+            const NAME = '<%= name %>';
+</script>
 <script src="/static/weblibs/mermaid/mermaid.min.js"></script>
 <script src="/static/weblibs/docsify/docsify.min.js"></script>
 <script src="/static/weblibs/docsify/prism-bash.min.js"></script>
@@ -54,12 +57,13 @@
 <script src="/static/weblibs/bootstrap3/js/bootstrap.min.js"></script>
 <script src="/static/weblibs/team/js/team.js"></script>
 <script src="/static/weblibs/team/js/team-docsify.js"></script>
-<script src="/static/weblibs/docsify/search.js"></script>
-
+<script src="/static/weblibs/gedis/gedis_client.js"></script>
+<script src="/static/weblibs/sonic/sonic_client.js"></script>
 <script src="/static/wiki/js/docsify_config.js"></script>
 <script>
 docsifyConfig("<%- name %>", <%- all_pages %>);
 </script>
+<script src="/static/weblibs/docsify/search.js"></script>
 </body>
 
 </html>
