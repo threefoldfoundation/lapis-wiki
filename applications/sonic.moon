@@ -1,1 +1,0 @@
-/sandbox/code/github/threefoldtech/digitalmeX/packages/sonic/app.moon
