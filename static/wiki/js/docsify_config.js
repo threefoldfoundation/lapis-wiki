@@ -4,7 +4,7 @@ mermaid.initialize({ startOnLoad: false });
 function docsifyConfig(name, all_pages) {
     window.$docsify = {
         coverpage: false,
-        basePath: '/',
+        basePath: wiki_path,
         name: 'ThreeFold Foundation ' + name.charAt(0).toUpperCase() + name.slice(1),
         el: '#app_' + name,
         disqus: '//tf-foundation.disqus.com/embed.js',

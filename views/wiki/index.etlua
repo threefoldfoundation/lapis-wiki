@@ -43,6 +43,10 @@
 <script>
             const SERVER = '<%= url %>/ws';
             const NAME = '<%= name %>';
+            var wiki_path = '/'
+            if (<%= wiki_path %>) {
+                wiki_path = "/wiki/" + NAME
+            }
 </script>
 <script src="/static/weblibs/mermaid/mermaid.min.js"></script>
 <script src="/static/weblibs/docsify/docsify.min.js"></script>

@@ -6,12 +6,11 @@ os = require("os")
 class WikiApp extends lapis.Application
     @enable "etlua"
 
-    "/(*)": =>
-        @name = ngx.var.name
-        @wiki_path = false
+    "/wiki/:doc_site(/*)": =>
+        @name = @params.doc_site
+        @wiki_path = true
         req = @req.parsed_url
         file = @params.splat
-
         if file == nil
             -- If no params after `/`, this means we are in the home of the wiki and need to load index
             -- TODO: Remove this logic part after implementing sonic search
