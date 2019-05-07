@@ -57,12 +57,21 @@ function docsifyConfig(name, all_pages) {
             function (hook) {
                 hook.doneEach(() => {
                     var url = new URL(window.location.href.replace('#', ''));
-                    var param = new URLSearchParams(url.search).get('sidebar');
+                    var params = new URLSearchParams(url.search)
+
+                    // sidebar
+                    var sidebar = params.get('sidebar');
                     const dom = document.querySelector('body');
-                    if (param == "hide") {
+                    if (sidebar == 'hide') {
                         dom.classList.add('no-sidebar');
-                    } else if (param == "collapse") {
+                    } else if (sidebar == "collapse") {
                         dom.classList.add('close');
+                    }
+
+                    // github logo
+                    var github = params.get('github')
+                    if (github === 'hide') {
+                        document.querySelector('.github-corner').hidden = true;
                     }
                 });
             },
