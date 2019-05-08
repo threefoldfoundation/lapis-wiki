@@ -11,7 +11,8 @@ class WikiApp extends lapis.Application
         @wiki_path = false
         req = @req.parsed_url
         file = @params.splat
-
+        if @req.headers['x-forwarded-proto'] == "https"
+            @req.parsed_url.scheme = "https"
         if file == nil
             -- If no params after `/`, this means we are in the home of the wiki and need to load index
             -- TODO: Remove this logic part after implementing sonic search
@@ -30,12 +31,12 @@ class WikiApp extends lapis.Application
                             dirs[#dirs + 1] = full_path
             @all_pages = util.to_json(all_pages)
             scheme = "ws"
+            if @req.parsed_url.scheme == "https"
+                scheme = "wss"
             @url = scheme .. "://" .. req.host
             if req.port
                 @url = @url .. ":" .. req.port
             return render: "wiki.index", layout: false
-        if @req.headers['x-forwarded-proto'] == "https"
-            @req.parsed_url.scheme = "https"
         if string.sub(file, -3) == ".md"
             file = string.lower(file)
 
