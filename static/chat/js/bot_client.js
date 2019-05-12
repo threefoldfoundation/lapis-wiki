@@ -65,9 +65,9 @@ var locationContentGenerate = function (message, label, kwargs) {
             function locationChoiceGenerate() {
                 let lat = 51.260197;
                 let lng = 4.402771;
-            
+
                 let mymap = L.map('mymap').setView([lat, lng], 4);
-            
+
                 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
                     maxZoom: 18,
                     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
@@ -75,9 +75,9 @@ var locationContentGenerate = function (message, label, kwargs) {
                         'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
                     id: 'mapbox.streets'
                 }).addTo(mymap);
-            
+
                 let popup = L.popup();
-            
+
                 function onMapClick(e) {
                     popup
                         .setLatLng(e.latlng)
@@ -99,10 +99,10 @@ var locationContentGenerate = function (message, label, kwargs) {
         </div>
     </div>
     <label class="location-error">${label}</label>
-    
 
 
-    
+
+
     `
 }
 
@@ -175,19 +175,6 @@ var dropDownChoiceGenerate = function (message, options, kwargs) {
     return contents;
 }
 
-var addStep = function (reset) {
-    if (reset) {
-        $(".f1-steps").empty();
-    }
-    const currentStep = $(".f1-steps").children().length + 1;
-    const stepTemplate = `
-	<div class="f1-step active">
-		<div class="f1-step-icon">${currentStep}</div>
-	</div>`;
-    $(".f1-step:last-child").removeClass("active");
-    $(".f1-steps").append(stepTemplate);
-}
-
 var generateSlide = function (res) {
     $("#spinner").toggle();
     // if error: leave the old slide and show the error
@@ -204,7 +191,6 @@ var generateSlide = function (res) {
         $(location).attr("href", res["msg"]);
         return
     }
-    addStep(res['kwargs']['reset']);
     let contents = "";
     switch (res['cat']) {
         case "string_ask":
