@@ -76,7 +76,7 @@ function docsifyConfig(name, all_pages) {
                 });
             },
 
-            //TeamWidgetPlugin(),
+            TeamWidgetPlugin(),
 
             function (hook) {
                 hook.doneEach(() => {
