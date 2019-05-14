@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="en">
     <% render("views.blog.head") %>
-    <body>
-        <% render("views.blog.navigation") %>
+    <body id="top">
         <% render("views.blog.page_header") %>
         <% render("views.blog.posts") %>
         <% render("views.blog.page_footer") %>
