@@ -1,7 +1,7 @@
 let EXEC_OBJ = {
     "namespace": "default",
     "actor": "chatbot",
-    "header": {
+    "headers": {
         "response_type": "json"
     },
 }
