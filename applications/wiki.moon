@@ -36,6 +36,8 @@ class WikiApp extends lapis.Application
             @url = scheme .. "://" .. req.host
             if req.port
                 @url = @url .. ":" .. req.port
+            file = io.open(root.."/.data")
+            @repo = file\read("*all")
             return render: "wiki.index", layout: false
         if string.sub(file, -3) == ".md"
             file = string.lower(file)
