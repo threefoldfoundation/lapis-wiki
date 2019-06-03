@@ -4,7 +4,8 @@ mermaid.initialize({ startOnLoad: false });
 function docsifyConfig(name, all_pages) {
     window.$docsify = {
         coverpage: false,
-        basePath: wiki_path,
+        homepage: 'readme.md',
+        basePath: "/docsites/" + name,
         name: 'ThreeFold Foundation ' + name.charAt(0).toUpperCase() + name.slice(1),
         el: '#app_' + name,
         disqus: '//tf-foundation.disqus.com/embed.js',
@@ -35,7 +36,6 @@ function docsifyConfig(name, all_pages) {
         },
         search: {
             maxAge: 86400000, // Expiration time, the default one day
-            paths: all_pages,
             placeholder: 'Type to search',
             noData: 'No Results!',
             name: name,
@@ -44,14 +44,6 @@ function docsifyConfig(name, all_pages) {
             depth: 2,
 
             hideOtherSidebarContent: false, // whether or not to hide other sidebar content
-
-            // To avoid search index collision
-            // between multiple websites under the same domain
-            namespace: name,
-        },
-        themeable: {
-            // readyTransition : false,
-            // responsiveTables: false
         },
         plugins: [
             function (hook) {
