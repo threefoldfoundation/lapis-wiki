@@ -43,7 +43,7 @@
 <script>
             const SERVER = '<%= url %>/ws';
             const NAME = '<%= name %>';
-            const METADATA = <%- metadata %>;ter
+            const METADATA = <%- metadata %>;
 </script>
 <script src="/static/weblibs/mermaid/mermaid.min.js"></script>
 <script src="/static/weblibs/docsify/docsify.min.js"></script>
