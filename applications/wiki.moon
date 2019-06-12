@@ -1,6 +1,7 @@
 lapis = require "lapis"
 common = require "applications/wiki/common"
 
+
 class WikiApp extends lapis.Application
     @enable "etlua"
 
