@@ -2,10 +2,13 @@
 mermaid.initialize({ startOnLoad: false });
 
 function docsifyConfig(name, repo) {
+    basePath = "/docsites/" + name;
+    TeamWidget.avatarPrefix = basePath;
+
     window.$docsify = {
         coverpage: false,
         homepage: 'readme.md',
-        basePath: "/docsites/" + name,
+        basePath: basePath,
         name: 'ThreeFold Foundation ' + name.charAt(0).toUpperCase() + name.slice(1),
         el: '#app_' + name,
         disqus: '//tf-foundation.disqus.com/embed.js',
