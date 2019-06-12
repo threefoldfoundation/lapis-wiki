@@ -1,4 +1,5 @@
 lapis = require "lapis"
+common = require "applications/wiki/common"
 
 
 class WikiApp extends lapis.Application
@@ -20,4 +21,6 @@ class WikiApp extends lapis.Application
         @url = scheme .. "://" .. req.host
         if req.port
             @url = @url .. ":" .. req.port
+
+        @metadata = common.load_metadata(@name)
         return render: "wiki.index", layout: false

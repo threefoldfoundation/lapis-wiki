@@ -1,7 +1,7 @@
 
 mermaid.initialize({ startOnLoad: false });
 
-function docsifyConfig(name, all_pages) {
+function docsifyConfig(name, repo) {
     window.$docsify = {
         coverpage: false,
         homepage: 'readme.md',
@@ -9,7 +9,7 @@ function docsifyConfig(name, all_pages) {
         name: 'ThreeFold Foundation ' + name.charAt(0).toUpperCase() + name.slice(1),
         el: '#app_' + name,
         disqus: '//tf-foundation.disqus.com/embed.js',
-        repo: 'https://github.com/threefoldfoundation/info_' + name,
+        repo: repo || ('https://github.com/threefoldfoundation/' + name),
         loadSidebar: true,
         markdown: {
             renderer: {

@@ -43,6 +43,7 @@
 <script>
             const SERVER = '<%= url %>/ws';
             const NAME = '<%= name %>';
+            const METADATA = <%- metadata %>;
 </script>
 <script src="/static/weblibs/mermaid/mermaid.min.js"></script>
 <script src="/static/weblibs/docsify/docsify.min.js"></script>
@@ -61,7 +62,7 @@
 <script src="/static/weblibs/sonic/sonic_client.js"></script>
 <script src="/static/wiki/js/docsify_config.js"></script>
 <script>
-docsifyConfig("<%- name %>");
+docsifyConfig("<%- name %>", METADATA.repo);
 </script>
 <script src="/static/weblibs/docsify/search.js"></script>
 </body>
