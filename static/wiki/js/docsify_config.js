@@ -6,7 +6,6 @@ function docsifyConfig(name, repo) {
     TeamWidget.avatarPrefix = basePath;
 
     window.$docsify = {
-	logo: '../../static/img/tfn-small.png',
         coverpage: false,
         homepage: 'readme.md',
         basePath: basePath,
